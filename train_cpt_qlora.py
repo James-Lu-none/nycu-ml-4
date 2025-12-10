@@ -15,9 +15,10 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--model_choice", type=str, required=True)
+parser.add_argument("--model_path", type=str, required=True)
 args = parser.parse_args()
 
-MODEL_NAME = "Qwen/Qwen2.5-1.5B"
+MODEL_NAME = args.model_path
 MODEL_CHOICE = args.model_choice
 DATA_PATH = "data/cpt.jsonl"
 OUT_DIR = "model/qwen-cpt-qlora"
