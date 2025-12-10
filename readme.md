@@ -53,3 +53,12 @@ Private Leaderboard前三名需上台報告做法，每人至少報告15分鐘�
 CPT: Mistral_v0.3_(7B)-CPT.ipynb
 SFT: Llama3.1_(8B)-Alpaca.ipynb
 GRPO: Llama3.1_(8B)-GRPO.ipynb
+
+
+## Quick Start Workflow
+
+### data preprocessing
+```bash
+# QA pair extraction
+python3 preprocess.py --input_path data/archive/AI_conv.csv
+```
