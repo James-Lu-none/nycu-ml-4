@@ -60,16 +60,16 @@ GRPO: Llama3.1_(8B)-GRPO.ipynb
 ### data preprocessing
 ```bash
 # QA pair extraction (train/validation set)
-python3 preprocess_sft.py --input_path data/archive/AI_conv.csv
+python3 preprocess_sft.py
 # QA pair extraction (test set)
 python3 preprocess_test.py
 # CPT data preprocessing
 python3 preprocess_cpt.py
 
 # model training
-python3 train_cpt_qlora.py
-python3 train_sft_qlora.py
+python3 train_cpt_qlora.py --model_choice qwen2_5_1_5b_qlora4bit --model_path Qwen/Qwen2.5-1.5B
+python3 train_sft_qlora.py --model_choice qwen2_5_1_5b_qlora4bit --model_path model/qwen-cpt-qlora/{timestamp}
 
 # model prediction
-python3 predict.py --model_path model/qwen-sft-qlora
+python3 predict.py --model_choice qwen2_5_1_5b_qlora4bit --model_path model/qwen-sft-qlora/{timestamp}
 ```
