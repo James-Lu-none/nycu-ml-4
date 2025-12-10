@@ -175,15 +175,13 @@ def main():
     train, val = processed[:split_idx], processed[split_idx:]
 
     train_path = os.path.join(args.out_dir, "train.json")
-    val_path = os.path.join(args.out_dir, "val.jsonl")
+    val_path = os.path.join(args.out_dir, "val.json")
 
     with open(train_path, "w", encoding="utf-8") as f:
-        for row in train:
-            f.write(json.dumps(row, ensure_ascii=False) + "\n")
+        json.dump(train, f, ensure_ascii=False, indent=2)
 
     with open(val_path, "w", encoding="utf-8") as f:
-        for row in val:
-            f.write(json.dumps(row, ensure_ascii=False) + "\n")
+        json.dump(val, f, ensure_ascii=False, indent=2)
 
     stats = {
         "total": len(processed),
