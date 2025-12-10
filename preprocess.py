@@ -142,7 +142,7 @@ def build_prompt(record: Dict[str, Any]) -> Dict[str, str]:
     if not prompt.strip() or not response:
         return {}
 
-    return {"instruction": "請根據文章回答下列選擇題，請只輸出正確選項的數字。","input": prompt, "response": response}
+    return {"id": id,"instruction": "請根據文章回答下列選擇題，請只輸出正確選項的數字。","input": prompt, "response": response}
 
 
 def main():
@@ -174,7 +174,7 @@ def main():
     split_idx = int(len(processed) * (1 - args.val_ratio))
     train, val = processed[:split_idx], processed[split_idx:]
 
-    train_path = os.path.join(args.out_dir, "train.jsonl")
+    train_path = os.path.join(args.out_dir, "train.json")
     val_path = os.path.join(args.out_dir, "val.jsonl")
 
     with open(train_path, "w", encoding="utf-8") as f:

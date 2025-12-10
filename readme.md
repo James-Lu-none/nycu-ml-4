@@ -59,6 +59,8 @@ GRPO: Llama3.1_(8B)-GRPO.ipynb
 
 ### data preprocessing
 ```bash
-# QA pair extraction
+# QA pair extraction (train/validation set)
 python3 preprocess.py --input_path data/archive/AI_conv.csv
+# QA pair extraction (test set)
+python3 preprocess_test.py 
 ```
