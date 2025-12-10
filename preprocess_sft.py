@@ -147,7 +147,7 @@ def build_prompt(record: Dict[str, Any]) -> Dict[str, str]:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input_path", type=str, required=True, help="Raw dataset path (json / jsonl / csv).")
+    parser.add_argument("--input_path", type=str, default="data/archive/1001-question-v3.csv")
     parser.add_argument("--val_ratio", type=float, default=0.1)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--out_dir", type=str, default=DEFAULT_OUT)
