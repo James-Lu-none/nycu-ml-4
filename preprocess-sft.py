@@ -171,29 +171,12 @@ def main():
     random.seed(args.seed)
     random.shuffle(processed)
 
-    split_idx = int(len(processed) * (1 - args.val_ratio))
-    train, val = processed[:split_idx], processed[split_idx:]
-
-    train_path = os.path.join(args.out_dir, "train.json")
-    val_path = os.path.join(args.out_dir, "val.json")
-
+    train_path = os.path.join(args.out_dir, "train.jsonl")
     with open(train_path, "w", encoding="utf-8") as f:
-        json.dump(train, f, ensure_ascii=False, indent=2)
-
-    with open(val_path, "w", encoding="utf-8") as f:
-        json.dump(val, f, ensure_ascii=False, indent=2)
-
-    stats = {
-        "total": len(processed),
-        "train": len(train),
-        "val": len(val),
-    }
-    print(stats)
-    stats_path = os.path.join(args.out_dir, "stats.json")
-    with open(stats_path, "w", encoding="utf-8") as f:
-        json.dump(stats, f, ensure_ascii=False, indent=2)
-
-    print(f"✓ Saved {len(train)} train / {len(val)} val samples to {args.out_dir}")
+        for item in processed:
+            f.write(json.dumps(item, ensure_ascii=False) + "\n")
+    
+    print(f"✓ Saved {len(processed)} samples to {args.out_dir}")
 
 
 if __name__ == "__main__":
