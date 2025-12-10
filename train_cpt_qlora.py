@@ -32,6 +32,9 @@ model, tokenizer = model_fn(
 )
 
 dataset = load_dataset("json", data_files=DATA_PATH, split="train")
+dataset = dataset.train_test_split(test_size=0.1, seed=42)
+train_dataset = dataset["train"]
+val_dataset = dataset["test"]
 
 def tokenize_fn(examples):
     return tokenizer(
@@ -40,7 +43,13 @@ def tokenize_fn(examples):
         max_length=1024,
     )
 
-tokenized_dataset = dataset.map(
+tokenized_train_dataset = train_dataset.map(
+    tokenize_fn,
+    batched=True,
+    remove_columns=["text"]
+)
+
+tokenized_val_dataset = val_dataset.map(
     tokenize_fn,
     batched=True,
     remove_columns=["text"]
@@ -63,13 +72,16 @@ training_args = TrainingArguments(
     logging_steps=50,
     save_steps=500,
     save_total_limit=2,
-    report_to="none"
+    report_to="none",
+    evaluation_strategy="steps",
+    eval_steps=500,
 )
 
 trainer = Trainer(
     model=model,
     args=training_args,
-    train_dataset=tokenized_dataset,
+    train_dataset=tokenized_train_dataset,
+    eval_dataset=tokenized_val_dataset,
     data_collator=data_collator
 )
 

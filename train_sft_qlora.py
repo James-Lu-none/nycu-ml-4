@@ -32,6 +32,9 @@ model, tokenizer = model_fn(
 )
 
 dataset = load_dataset("json", data_files=TRAIN_FILE, split="train")
+dataset = dataset.train_test_split(test_size=0.1, seed=42)
+train_dataset = dataset["train"]
+val_dataset = dataset["test"]
 
 def format_prompt(example):
     prompt = f"{example['instruction']}\n{example['input']}"
@@ -53,9 +56,13 @@ def format_prompt(example):
     return tokenized
 
 
-tokenized_dataset = dataset.map(
+train_dataset = train_dataset.map(
     format_prompt,
-    remove_columns=dataset.column_names,
+    remove_columns=train_dataset.column_names
+)
+val_dataset = val_dataset.map(
+    format_prompt,
+    remove_columns=val_dataset.column_names
 )
 
 
@@ -72,13 +79,16 @@ training_args = TrainingArguments(
     save_steps=500,
     save_total_limit=2,
     report_to="none",
+    evaluation_strategy="steps",
+    eval_steps=500,
 )
 
 
 trainer = Trainer(
     model=model,
     args=training_args,
-    train_dataset=tokenized_dataset,
+    train_dataset=train_dataset,
+    eval_dataset=val_dataset,
 )
 
 trainer.train()
