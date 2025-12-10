@@ -16,19 +16,28 @@ from plot_loss import *
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--model_choice", type=str, required=True)
-parser.add_argument("--model_path", type=str, required=True)
+parser.add_argument("--model_path", type=str)
 args = parser.parse_args()
 
-BASE_MODEL_PATH = args.model_path
+if args.model_path is None:
+    base_dir = os.path.join("model_cpt", args.model_choice)
+    model_dirs = [d for d in os.listdir(base_dir) if os.path.isdir(os.path.join(base_dir, d))]
+    latest_model_dir = max(model_dirs, key=lambda d: os.path.getmtime(os.path.join(base_dir, d)) if "checkpoint" not in d else 0)
+    MODEL_NAME = os.path.join(base_dir, latest_model_dir)
+else:
+    MODEL_NAME = args.model_path
+
 MODEL_CHOICE = args.model_choice
 TRAIN_FILE = "data/sft.jsonl"
-OUT_DIR = "model/qwen-sft-qlora"
+OUT_DIR = f"model_sft/{MODEL_CHOICE}"
+
+print("Using model:", MODEL_NAME)
 
 os.makedirs(OUT_DIR, exist_ok=True)
 
 model_fn = globals()[MODEL_CHOICE]
 model, tokenizer = model_fn(
-    base_model_path=BASE_MODEL_PATH,
+    base_model_path=MODEL_NAME,
     load_lora=True
 )
 
@@ -80,7 +89,7 @@ training_args = TrainingArguments(
     save_steps=500,
     save_total_limit=2,
     report_to="none",
-    evaluation_strategy="steps",
+    eval_strategy="steps",
     eval_steps=500,
 )
 

@@ -16,13 +16,22 @@ from plot_loss import *
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--model_choice", type=str, required=True)
-parser.add_argument("--model_path", type=str, required=True)
+parser.add_argument("--model_path", type=str)
 args = parser.parse_args()
 
-MODEL_NAME = args.model_path
+if args.model_path is None:
+    base_dir = os.path.join("model_cpt", args.model_choice)
+    model_dirs = [d for d in os.listdir(base_dir) if os.path.isdir(os.path.join(base_dir, d))]
+    latest_model_dir = max(model_dirs, key=lambda d: os.path.getmtime(os.path.join(base_dir, d)) if "checkpoint" not in d else 0)
+    MODEL_NAME = os.path.join(base_dir, latest_model_dir)
+else:
+    MODEL_NAME = args.model_path
+
 MODEL_CHOICE = args.model_choice
 DATA_PATH = "data/cpt.jsonl"
-OUT_DIR = "model/qwen-cpt-qlora"
+OUT_DIR = f"model_cpt/{MODEL_CHOICE}"
+
+print("Using model:", MODEL_NAME)
 
 os.makedirs(OUT_DIR, exist_ok=True)
 
@@ -74,7 +83,7 @@ training_args = TrainingArguments(
     save_steps=500,
     save_total_limit=2,
     report_to="none",
-    evaluation_strategy="steps",
+    eval_strategy="steps",
     eval_steps=500,
 )
 

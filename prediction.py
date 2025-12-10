@@ -8,10 +8,19 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--model_choice", type=str, required=True)
-parser.add_argument("--model_path", type=str, required=True)
+parser.add_argument("--model_path", type=str)
 args = parser.parse_args()
 
-MODEL_PATH = args.model_path
+if args.model_path is None:
+    base_dir = os.path.join("model_sft", args.model_choice)
+    model_dirs = [d for d in os.listdir(base_dir) if os.path.isdir(os.path.join(base_dir, d))]
+    latest_model_dir = max(model_dirs, key=lambda d: os.path.getmtime(os.path.join(base_dir, d)) if "checkpoint" not in d else 0)
+    MODEL_PATH = os.path.join(base_dir, latest_model_dir)
+else:
+    MODEL_PATH = args.model_path
+
+print("Using model:", MODEL_PATH)
+
 MODEL_CHOICE = args.model_choice
 TEST_FILE = "data/1001-question-v3.jsonl"
 
