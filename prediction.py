@@ -17,7 +17,8 @@ TEST_FILE = "data/1001-question-v3.jsonl"
 
 timestamp = np.datetime64('now').astype('str').replace(':', '-').replace(' ', '_')
 OUT_BASE = "output"
-OUT_CSV = f"{OUT_BASE}/{MODEL_PATH}_{timestamp}.csv"
+parsed_model_name = MODEL_PATH.split("/")[-1]
+OUT_CSV = f"{OUT_BASE}/{parsed_model_name}_{timestamp}.csv"
 
 os.makedirs(OUT_BASE, exist_ok=True)
 device = "cuda" if torch.cuda.is_available() else "cpu"
