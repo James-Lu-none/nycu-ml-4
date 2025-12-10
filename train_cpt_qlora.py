@@ -28,7 +28,6 @@ else:
     MODEL_NAME = args.model_path
 
 MODEL_CHOICE = args.model_choice
-DATA_PATH = "data/cpt.jsonl"
 OUT_DIR = f"model_cpt/{MODEL_CHOICE}"
 
 print("Using model:", MODEL_NAME)
@@ -41,7 +40,12 @@ model, tokenizer = model_fn(
     load_lora=True
 )
 
-dataset = load_dataset("json", data_files=DATA_PATH, split="train")
+DATA_PATHS = [
+    "data/cpt.jsonl",
+    "data/nmtl_2006_dadwt_cpt.jsonl"
+]
+
+dataset = load_dataset("json", data_files=DATA_PATHS, split="train")
 # only use 10% for quick testing
 # dataset = dataset.shuffle(seed=42).select(range(int(len(dataset)*0.001)))
 dataset = dataset.train_test_split(test_size=0.1, seed=42)
