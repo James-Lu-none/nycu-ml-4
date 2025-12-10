@@ -81,3 +81,22 @@ python3 prediction.py --model_choice qwen2_5_1_5b_qlora4bit --model_path model_s
 # model prediction (use latest sft model)
 python3 prediction.py --model_choice qwen2_5_1_5b_qlora4bit
 ```
+
+## data source
+
+- 語料匯入專案 <https://github.com/Taiwanese-Corpus/hue7jip8>
+
+### Continual Pre-Training (CPT) Corpora
+
+- 台語文數位典藏資料庫 <https://github.com/Taiwanese-Corpus/nmtl_2006_dadwt> 劇本、歌詩、散文、小說
+- 台語文語料庫蒐集及語料庫為本台語書面語音節詞頻統計 <https://taiwanese-corpus.github.io/Ungian_2005_guliau-supin>
+- 教育部臺灣閩南語字詞頻調查工作 <https://taiwanese-corpus.github.io/Ungian_2009_KIPsupin>
+- 臺語國校仔課本 https://taiwanese-corpus.github.io/kok4hau7-kho3pun2
+
+```bash
+git clone --depth 1 https://github.com/Taiwanese-Corpus/nmtl_2006_dadwt
+```
+
+### Supervised Fine-Tuning (SFT) Dataset
+
+- 
