@@ -142,7 +142,7 @@ def build_prompt(record: Dict[str, Any]) -> Dict[str, str]:
     if not prompt.strip() or not response:
         return {}
 
-    return {"prompt": prompt, "response": response}
+    return {"instruction": "請根據文章回答下列選擇題，請只輸出正確選項的數字。","input": prompt, "response": response}
 
 
 def main():
