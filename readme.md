@@ -66,10 +66,18 @@ python3 preprocess_test.py
 # CPT data preprocessing
 python3 preprocess_cpt.py
 
-# model training
+# model continual pre-training
 python3 train_cpt_qlora.py --model_choice qwen2_5_1_5b_qlora4bit --model_path Qwen/Qwen2.5-1.5B
-python3 train_sft_qlora.py --model_choice qwen2_5_1_5b_qlora4bit --model_path model/qwen-cpt-qlora/{timestamp}
+# model continual pre-training (resume from latest cpt model)
+python3 train_cpt_qlora.py --model_choice qwen2_5_1_5b_qlora4bit
+
+# model supervised fine-tuning
+python3 train_sft_qlora.py --model_choice qwen2_5_1_5b_qlora4bit --model_path model_cpt/qwen2_5_1_5b_qlora4bit/{timestamp}
+# model supervised fine-tuning (resume from latest cpt model)
+python3 train_sft_qlora.py --model_choice qwen2_5_1_5b_qlora4bit
 
 # model prediction
-python3 predict.py --model_choice qwen2_5_1_5b_qlora4bit --model_path model/qwen-sft-qlora/{timestamp}
+python3 prediction.py --model_choice qwen2_5_1_5b_qlora4bit --model_path model_sft/qwen2_5_1_5b_qlora4bit/{timestamp}
+# model prediction (use latest sft model)
+python3 prediction.py --model_choice qwen2_5_1_5b_qlora4bit
 ```
