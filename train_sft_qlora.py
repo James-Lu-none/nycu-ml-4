@@ -42,6 +42,8 @@ model, tokenizer = model_fn(
 )
 
 dataset = load_dataset("json", data_files=TRAIN_FILE, split="train")
+# only use 10% for quick testing
+# dataset = dataset.shuffle(seed=42).select(range(int(len(dataset)*0.001)))
 dataset = dataset.train_test_split(test_size=0.1, seed=42)
 train_dataset = dataset["train"]
 val_dataset = dataset["test"]
@@ -105,7 +107,7 @@ trainer = Trainer(
 trainer.train()
 log_history = trainer.state.log_history
 
-loss = trainer.state.log_history[-1]["loss"]
+loss = trainer.state.log_history[-1]["train_loss"]
 print("Final training loss:", loss)
 timestamp = np.datetime64('now').astype('str').replace(':', '-').replace(' ', '_')
 
