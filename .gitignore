@@ -1,7 +1,8 @@
 *.xlsx
 *.csv
 __pycache__
-model/
+model_cpt/
+model_sft/
 data/
 !history/*
 image/
