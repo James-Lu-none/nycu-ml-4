@@ -25,9 +25,11 @@ for index, row in df.iterrows():
         options.append(f"{i}. {text}")
     records.append({
         "id": row['ID'],
+        "instruction": "請根據文章回答下列選擇題，請只輸出正確選項的數字。",
         "input": f"文章：\n{article}" + f"\n\n問題：{question}" + "\n\n選項：" + "\n".join(options) 
     })
-out_path = "data/processed/1001-question-v3.json"
+out_path = "data/1001-question-v3.jsonl"
 with open(out_path, "w", encoding="utf-8") as f:
-    json.dump(records, f, ensure_ascii=False, indent=2)
+    for record in records:
+        f.write(json.dumps(record, ensure_ascii=False) + "\n")
 print(f"Saved {len(records)} records to {out_path}")

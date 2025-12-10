@@ -11,10 +11,14 @@ from peft import LoraConfig, get_peft_model
 from models import *
 import os
 import numpy as np
+import argparse
 
-MODEL_PATH = "model"
+parser = argparse.ArgumentParser()
+parser.add_argument("--model_choice", type=str, required=True)
+args = parser.parse_args()
+
 MODEL_NAME = "Qwen/Qwen2.5-1.5B"
-MODEL_CHOICE = "qwen2_5_1_5b_qlora4bit"
+MODEL_CHOICE = args.model_choice
 DATA_PATH = "data/cpt.jsonl"
 OUT_DIR = "model/qwen-cpt-qlora"
 
