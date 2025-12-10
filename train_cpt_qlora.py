@@ -12,6 +12,7 @@ from models import *
 import os
 import numpy as np
 import argparse
+from plot_loss import *
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--model_choice", type=str, required=True)
@@ -86,6 +87,8 @@ trainer = Trainer(
 )
 
 trainer.train()
+log_history = trainer.state.log_history
+
 loss = trainer.state.log_history[-1]["loss"]
 print("Final training loss:", loss)
 timestamp = np.datetime64('now').astype('str').replace(':', '-').replace(' ', '_')
@@ -93,5 +96,6 @@ timestamp = np.datetime64('now').astype('str').replace(':', '-').replace(' ', '_
 OUT_DIR = OUT_DIR + f"/{timestamp}_{loss:.4f}"
 trainer.save_model(OUT_DIR)
 tokenizer.save_pretrained(OUT_DIR)
+plot_and_save_loss(log_history, OUT_DIR, title="CPT Loss")
 
 print(f"CPT done, model saved to {OUT_DIR}")
