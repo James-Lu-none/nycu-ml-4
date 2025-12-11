@@ -85,9 +85,9 @@ def collect_tbk(root_dir: str, output_jsonl: str):
 
                 used_files += 1
 
-    print(f"✅ Total .tbk files found : {total_files}")
-    print(f"✅ Files used as CPT     : {used_files}")
-    print(f"✅ Total CPT samples    : {len(samples)}")
+    print(f"Total .tbk files found : {total_files}")
+    print(f"Files used as CPT     : {used_files}")
+    print(f"Total CPT samples    : {len(samples)}")
 
     os.makedirs(os.path.dirname(output_jsonl), exist_ok=True)
 
@@ -95,7 +95,7 @@ def collect_tbk(root_dir: str, output_jsonl: str):
         for s in samples:
             f.write(json.dumps(s, ensure_ascii=False) + "\n")
 
-    print(f"✅ CPT jsonl saved to: {output_jsonl}")
+    print(f"CPT jsonl saved to: {output_jsonl}")
 
 
 if __name__ == "__main__":
