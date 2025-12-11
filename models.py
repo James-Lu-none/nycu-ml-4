@@ -6,6 +6,30 @@ from transformers import (
 )
 from peft import LoraConfig, get_peft_model
 
+def qwen2_5_1_5b(
+    base_model_path,
+    load_lora=False,
+):
+    """
+    Qwen2.5-1.5B
+    """
+
+    tokenizer = AutoTokenizer.from_pretrained(
+        base_model_path,
+        use_fast=True,
+        trust_remote_code=True
+    )
+
+    model = AutoModelForCausalLM.from_pretrained(
+        base_model_path,
+        device_map="auto",
+        trust_remote_code=True,
+    )
+    model.config.use_cache = False
+    model.enable_input_require_grads()
+    model.gradient_checkpointing_enable()
+    return model, tokenizer
+
 def qwen2_5_7b(
     base_model_path,
     load_lora=False,
