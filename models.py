@@ -25,7 +25,9 @@ def qwen2_5_7b(
         device_map="auto",
         trust_remote_code=True,
     )
-
+    model.config.use_cache = False
+    model.enable_input_require_grads()
+    model.gradient_checkpointing_enable()
     return model, tokenizer
     
 
@@ -48,7 +50,9 @@ def qwen2_5_14b(
         device_map="auto",
         trust_remote_code=True,
     )
-
+    model.config.use_cache = False
+    model.enable_input_require_grads()
+    model.gradient_checkpointing_enable()
     return model, tokenizer
     
 
@@ -91,5 +95,7 @@ def qwen2_5_1_5b_qlora4bit(
         )
 
         model = get_peft_model(model, lora_config)
-
+    model.config.use_cache = False
+    model.enable_input_require_grads()
+    model.gradient_checkpointing_enable()
     return model, tokenizer
