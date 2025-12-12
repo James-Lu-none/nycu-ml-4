@@ -26,7 +26,7 @@ for index, row in df.iterrows():
     records.append({
         "id": row['ID'],
         "instruction": "請根據文章回答下列選擇題，請只輸出正確選項的數字。",
-        "input": f"文章：\n{article}" + f"\n\n問題：{question}" + "\n\n選項：" + "\n".join(options) 
+        "input": f"文章：\n{article}" + f"\n\n問題：{question}" + "\n\n選項：\n" + "\n".join(options) + "\n\n只需要回傳數字，不需要其他文字"
     })
 out_path = "data/1001-question-v3.jsonl"
 with open(out_path, "w", encoding="utf-8") as f:
