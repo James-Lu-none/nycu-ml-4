@@ -1,4 +1,4 @@
-# exit if any command fails
+#!/bin/bash
 set -e
 
 model=Qwen/Qwen2.5-7B-Instruct
