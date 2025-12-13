@@ -10,10 +10,11 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 parser = argparse.ArgumentParser()
 parser.add_argument("--model_name", type=str, required=True)
 parser.add_argument("--k", type=int, default=4)
+parser.add_argument("--test_file", type=str, default="data/1001-question-v3.jsonl")
 args = parser.parse_args()
 
 TRAIN_QA = "data/sft.jsonl"
-TEST_FILE = "data/1001-question-v3.jsonl"
+TEST_FILE = args.test_file
 MODEL_NAME = args.model_name
 K = args.k
 timestamp = np.datetime64('now').astype('str').replace(':', '-').replace(' ', '_')
