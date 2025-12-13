@@ -66,11 +66,9 @@ with open(TEST_FILE, encoding="utf-8") as f:
         pred = ""
         if K == 0:
             prompt = (
-                "以下是台文閱讀理解選擇題範例。"
-                "請依照範例作答，只輸出正確選項的數字（1、2、3、4），"
-                "不要輸出任何解釋。\n\n"
-                "【現在請回答】\n"
-                f"{item['instruction']}\n{item['input']}\n答案："
+                "你是一個台灣閩南語的閱讀理解選擇題專家，請根據使用者提供的文章內容，選出最適合的答案。\n"
+                "請根據以下文章內容，選出最適合的答案，只輸出正確選項的數字（1、2、3、4），不要輸出任何解釋。\n\n"
+                f"文章內容：\n{item['input']}\n\n答案："
             )
             inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
             with torch.no_grad():
@@ -100,9 +98,8 @@ with open(TEST_FILE, encoding="utf-8") as f:
                 )
 
             prompt = (
-                "以下是台文閱讀理解選擇題範例。"
-                "請依照範例作答，只輸出正確選項的數字（1、2、3、4），"
-                "不要輸出任何解釋。\n\n"
+                "你是一個台灣閩南語的閱讀理解選擇題專家，請根據使用者提供的文章內容，選出最適合的答案。\n"
+                "以下是台文閱讀理解選擇題範例，請依照範例作答，只輸出正確選項的數字（1、2、3、4），不要輸出任何解釋。\n\n"
             )
             for ex in exemplars:
                 prompt += ex + "\n\n"
