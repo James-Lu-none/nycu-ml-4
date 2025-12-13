@@ -1,8 +1,8 @@
 *.xlsx
-*.csv
 __pycache__
 model_cpt/
 model_sft/
 !history/*
 image/
 visualization/
+output/
