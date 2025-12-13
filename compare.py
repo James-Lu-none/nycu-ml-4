@@ -7,6 +7,7 @@ predictions_dir = "output"
 df_base = pd.read_csv(base_csv)
 files = os.listdir(predictions_dir)
 sorted_files = sorted(files)
+sorted_files = sorted(files, key=lambda x: x.split("_")[-1])
 
 for file in sorted_files:
     if file.endswith(".csv"):
