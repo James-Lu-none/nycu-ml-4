@@ -94,7 +94,7 @@ with open(TEST_FILE, encoding="utf-8") as f:
             exemplars = []
             for i in idxs[0]:
                 exemplars.append(
-                    f"{qa_inputs[i]}\n答案：{qa_answers[i]}"
+                    f"{qa_inputs[i]}{qa_answers[i]}"
                 )
 
             prompt = (
@@ -105,10 +105,10 @@ with open(TEST_FILE, encoding="utf-8") as f:
                 prompt += ex + "\n\n"
 
             prompt += (
-                "【現在請回答】\n"
+                "【以上為範例，現在請回答以下題目】\n"
                 f"{item['instruction']}\n{item['input']}\n答案："
             )
-
+            print("Prompt:\n", prompt)
             inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
 
             with torch.no_grad():
