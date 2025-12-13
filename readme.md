@@ -100,3 +100,10 @@ git clone --depth 1 https://github.com/Taiwanese-Corpus/nmtl_2006_dadwt
 ### Supervised Fine-Tuning (SFT) Dataset
 
 - 
+
+### Qwen-Qwen2.5-7B-Instruct n-shot Results
+[0.78666](history/0-shot_Qwen-Qwen2.5-7B-Instruct_2025-12-13T00-15-33.csv)
+[0.79666](history/3-shot_Qwen-Qwen2.5-7B-Instruct_2025-12-13T00-32-32.csv)
+[0.80333](history/5-shot_Qwen-Qwen2.5-7B-Instruct_2025-12-13T00-51-19.csv)
+[0.79666](history/7-shot_Qwen-Qwen2.5-7B-Instruct_2025-12-13T01-11-00.csv)
+[0.80666](history/9-shot_Qwen-Qwen2.5-7B-Instruct_2025-12-13T01-32-32.csv)
