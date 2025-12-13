@@ -7,7 +7,6 @@ import pandas as pd
 from typing import List, Dict, Any, Optional
 
 DATA_ROOT = "data"
-DEFAULT_OUT = os.path.join(DATA_ROOT, "processed")
 
 
 def load_records(path: str) -> List[Dict[str, Any]]:
@@ -142,15 +141,15 @@ def build_prompt(record: Dict[str, Any]) -> Dict[str, str]:
     if not prompt.strip() or not response:
         return {}
 
-    return {"id": id,"instruction": "請根據文章回答下列選擇題，請只輸出正確選項的數字。","input": prompt, "response": response}
+    return {"id": id,"instruction": "","input": prompt, "response": response}
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input_path", type=str, default="data/archive/1001-question-v3.csv")
+    parser.add_argument("--input_path", type=str, default="data/archive/AI_conv.csv")
     parser.add_argument("--val_ratio", type=float, default=0.1)
     parser.add_argument("--seed", type=int, default=42)
-    parser.add_argument("--out_dir", type=str, default=DEFAULT_OUT)
+    parser.add_argument("--out_dir", type=str, default=DATA_ROOT)
     args = parser.parse_args()
 
     os.makedirs(args.out_dir, exist_ok=True)
@@ -171,7 +170,7 @@ def main():
     random.seed(args.seed)
     random.shuffle(processed)
 
-    train_path = os.path.join(args.out_dir, "train.jsonl")
+    train_path = os.path.join(args.out_dir, "sft.jsonl")
     with open(train_path, "w", encoding="utf-8") as f:
         for item in processed:
             f.write(json.dumps(item, ensure_ascii=False) + "\n")

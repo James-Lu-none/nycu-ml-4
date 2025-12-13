@@ -14,3 +14,13 @@ python3 prediction_few_shot.py --model_name $model --k 3 --test_file data/1001-q
 python3 prediction_few_shot.py --model_name $model --k 5 --test_file data/1001-question-v3-rag.jsonl
 python3 prediction_few_shot.py --model_name $model --k 7 --test_file data/1001-question-v3-rag.jsonl
 python3 prediction_few_shot.py --model_name $model --k 9 --test_file data/1001-question-v3-rag.jsonl
+
+
+python3 prediction_few_shot.py --model_name Qwen/Qwen2.5-72B-Instruct --k 3 --test_file data/1001-question-v3-rag.jsonl
+python3 prediction_few_shot.py --model_name Qwen/Qwen2.5-72B-Instruct --k 3 --test_file data/1001-question-v3.jsonl
+
+python3 prediction_few_shot.py --model_name Qwen/Qwen2.5-72B-Instruct --k 0 --test_file data/1001-question-v3-rag.jsonl
+python3 prediction_few_shot.py --model_name Qwen/Qwen2.5-72B-Instruct --k 0 --test_file data/1001-question-v3.jsonl
+
+python3 prediction_few_shot.py --model_name Qwen/Qwen2.5-72B-Instruct --k 5 --test_file data/1001-question-v3-rag.jsonl
+python3 prediction_few_shot.py --model_name Qwen/Qwen2.5-72B-Instruct --k 5 --test_file data/1001-question-v3.jsonl
