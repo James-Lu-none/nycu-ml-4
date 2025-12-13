@@ -37,6 +37,10 @@ for index, row in df.iterrows():
 
     input_text = ""
 
+    input_text += (
+        f"文章：\n{article}\n\n"
+    )
+
     if dict_block:
         input_text += dict_block + "\n\n"
         # print("-----------------------------")
@@ -46,10 +50,8 @@ for index, row in df.iterrows():
         # print("Added dictionary block:\n", dict_block)
 
     input_text += (
-        f"文章：\n{article}\n\n"
-        f"問題：{question}\n\n"
-        f"選項：\n" + "\n".join(options_with_idx) +
-        "\n\n只需要回傳數字，不需要其他文字"
+        f"問題：\n{question}\n\n"
+        f"選項：\n" + "\n".join(options_with_idx) + "\n"
     )
     record = {
         "id": row['ID'],
@@ -58,7 +60,7 @@ for index, row in df.iterrows():
     }
     # print(record)
     records.append(record)
-    out_path = "data/1001-question-v3-aug.jsonl"
+    out_path = "data/1001-question-v3-rag.jsonl"
     with open(out_path, "w", encoding="utf-8") as f:
         for record in records:
             f.write(json.dumps(record, ensure_ascii=False) + "\n")

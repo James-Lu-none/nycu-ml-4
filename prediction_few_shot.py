@@ -20,6 +20,8 @@ K = args.k
 timestamp = np.datetime64('now').astype('str').replace(':', '-').replace(' ', '_')
 MODEL_NAME_SAFE = MODEL_NAME.replace("/", "-")
 OUT_CSV = f"output/{K}-shot_{MODEL_NAME_SAFE}_{timestamp}.csv"
+if "rag" in TEST_FILE:
+    OUT_CSV = f"output/{K}-shot_{MODEL_NAME_SAFE}_{timestamp}_rag.csv"
 print("few-shot inference will be saved to:", OUT_CSV)
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
