@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 
-base_csv = "output/1001-question-v3-predictions.csv"
+base_csv = "output/3-shot_Qwen-Qwen2.5-32B-Instruct_2025-12-13T06-46-18_rag.csv"
 predictions_dir = "output"
 
 df_base = pd.read_csv(base_csv)
