@@ -97,13 +97,49 @@ python3 prediction.py --model_choice qwen2_5_1_5b_qlora4bit
 git clone --depth 1 https://github.com/Taiwanese-Corpus/nmtl_2006_dadwt
 ```
 
-### Supervised Fine-Tuning (SFT) Dataset
+### Qwen-Qwen2.5-1.5B-Instruct Model Fine-Tuning Results
 
-- 
+| Experiment | Score |
+|------------|-------|
+| [Qwen2.5-1.5B-sft-qlora](history/0-shot_Qwen-Qwen2.5-1.5B-Instruct_2025-12-13T00-15-33.csv) | 0.35666 |
 
 ### Qwen-Qwen2.5-7B-Instruct n-shot Results
-[0.78666](history/0-shot_Qwen-Qwen2.5-7B-Instruct_2025-12-13T00-15-33.csv)
-[0.79666](history/3-shot_Qwen-Qwen2.5-7B-Instruct_2025-12-13T00-32-32.csv)
-[0.80333](history/5-shot_Qwen-Qwen2.5-7B-Instruct_2025-12-13T00-51-19.csv)
-[0.79666](history/7-shot_Qwen-Qwen2.5-7B-Instruct_2025-12-13T01-11-00.csv)
-[0.80666](history/9-shot_Qwen-Qwen2.5-7B-Instruct_2025-12-13T01-32-32.csv)
+
+| Experiment | Score |
+|------------|-------|
+| [0-shot_Qwen-Qwen2.5-7B-Instruct](history/qwen2.5-7B/0-shot_Qwen-Qwen2.5-7B-Instruct_2025-12-13T00-15-33.csv) | 0.78666 |
+| [3-shot_Qwen-Qwen2.5-7B-Instruct](history/qwen2.5-7B/3-shot_Qwen-Qwen2.5-7B-Instruct_2025-12-13T00-32-32.csv) | 0.79666 |
+| [5-shot_Qwen-Qwen2.5-7B-Instruct](history/qwen2.5-7B/5-shot_Qwen-Qwen2.5-7B-Instruct_2025-12-13T00-51-19.csv) | 0.80333 |
+| [7-shot_Qwen-Qwen2.5-7B-Instruct](history/qwen2.5-7B/7-shot_Qwen-Qwen2.5-7B-Instruct_2025-12-13T01-11-00.csv) | 0.79666 |
+| [9-shot_Qwen-Qwen2.5-7B-Instruct](history/qwen2.5-7B/9-shot_Qwen-Qwen2.5-7B-Instruct_2025-12-13T01-32-32.csv) | 0.80666 |
+
+### Qwen-Qwen2.5-7B-Instruct RAG vs no RAG
+
+| Experiment | Score |
+|------------|-------|
+| [0-shot_Qwen-Qwen2.5-7B-Instruct](history/qwen2.5-7B/0-shot_Qwen-Qwen2.5-7B-Instruct_2025-12-13T00-15-33.csv) | 0.78666 |
+| [0-shot_Qwen-Qwen2.5-7B-Instruct_rag](history/qwen2.5-7B/0-shot_Qwen-Qwen2.5-7B-Instruct_2025-12-16T13-31-09_rag.csv) | 0.78333 |
+| [3-shot_Qwen-Qwen2.5-7B-Instruct](history/qwen2.5-7B/3-shot_Qwen-Qwen2.5-7B-Instruct_2025-12-13T00-32-32.csv) | 0.79666 |
+| [3-shot_Qwen-Qwen2.5-7B-Instruct_rag](history/qwen2.5-7B/3-shot_Qwen-Qwen2.5-7B-Instruct_2025-12-16T14-52-08_rag.csv) | 0.81333 |
+| [5-shot_Qwen-Qwen2.5-7B-Instruct](history/qwen2.5-7B/5-shot_Qwen-Qwen2.5-7B-Instruct_2025-12-13T00-51-19.csv) | 0.80333 |
+| [5-shot_Qwen-Qwen2.5-7B-Instruct_rag](history/qwen2.5-7B/5-shot_Qwen-Qwen2.5-7B-Instruct_2025-12-16T14-04-59_rag.csv) | 0.81333 |
+
+### Qwen-Qwen2.5-32B-Instruct RAG vs no RAG
+
+| Experiment | Score |
+|------------|-------|
+| [3-shot_Qwen-Qwen2.5-32B-Instruct](history/qwen2.5-32B/3-shot_Qwen-Qwen2.5-32B-Instruct_2025-12-13T06-46-18.csv) | 0.92000 |
+| [3-shot_Qwen-Qwen2.5-32B-Instruct_rag](history/qwen2.5-32B/3-shot_Qwen-Qwen2.5-32B-Instruct_2025-12-13T06-24-48_rag.csv) | 0.94666 |
+| [5-shot_Qwen-Qwen2.5-32B-Instruct](history/qwen2.5-32B/5-shot_Qwen-Qwen2.5-32B-Instruct_2025-12-13T17-14-12.csv) | 0.91333 |
+| [5-shot_Qwen-Qwen2.5-32B-Instruct_rag](history/qwen2.5-32B/5-shot_Qwen-Qwen2.5-32B-Instruct_2025-12-13T17-28-18_rag.csv) | 0.93666 |
+
+### Qwen-Qwen2.5-72B-Instruct RAG vs no RAG
+
+| Experiment | Score |
+|------------|-------|
+| [0-shot_Qwen-Qwen2.5-72B-Instruct](history/qwen2.5-72B/0-shot_Qwen-Qwen2.5-72B-Instruct_2025-12-13T13-49-32.csv) | 0.90333 |
+| [0-shot_Qwen-Qwen2.5-72B-Instruct_rag](history/qwen2.5-72B/0-shot_Qwen-Qwen2.5-72B-Instruct_2025-12-13T13-46-15_rag.csv) | 0.90000 |
+| [3-shot_Qwen-Qwen2.5-72B-Instruct](history/qwen2.5-72B/3-shot_Qwen-Qwen2.5-72B-Instruct_2025-12-13T14-34-21.csv) | 0.91666 |
+| [3-shot_Qwen-Qwen2.5-72B-Instruct_rag](history/qwen2.5-72B/3-shot_Qwen-Qwen2.5-72B-Instruct_2025-12-13T13-32-12_rag.csv) | 0.91333 |
+| [5-shot_Qwen-Qwen2.5-72B-Instruct](history/qwen2.5-72B/5-shot_Qwen-Qwen2.5-72B-Instruct_2025-12-13T14-03-34.csv) | 0.92333 |
+| [5-shot_Qwen-Qwen2.5-72B-Instruct_rag](history/qwen2.5-72B/5-shot_Qwen-Qwen2.5-72B-Instruct_2025-12-13T13-54-45_rag.csv) | 0.92333 |
